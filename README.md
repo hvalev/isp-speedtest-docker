@@ -10,7 +10,7 @@ Some code borrowed from here: https://github.com/igomez10/speedInspectorRPI/</br
 To get it running you can either use: </br>
 * docker run command
 ```
-docker build https://github.com/hvalev/speedtest-docker.git --tag isp-speedtest
+docker build https://github.com/hvalev/isp-speedtest-docker.git --tag isp-speedtest
 docker run -d --network host -v /home/pi/isp-logs/:/isp/ --name isp-speedtest isp-speedtest
 ```
 
@@ -20,7 +20,7 @@ version: "3.7"
 services:
   isp-speedtest:
     container_name: isp-speedtest
-    build: https://github.com/hvalev/speedtest-docker.git
+    build: https://github.com/hvalev/isp-speedtest-docker.git
     network_mode: host
     environment:
       - PUID=1000
