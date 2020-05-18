@@ -1,13 +1,14 @@
-FROM alpine:3.9
-RUN apk update \
-        && apk upgrade \
-        && apk add --no-cache \
-        ca-certificates \
-        && update-ca-certificates 2>/dev/null || true \
-        && apk add --no-cache speedtest-cli bash
+FROM alpine:3.11
+RUN apk update
+RUN apk upgrade 
+RUN apk add --no-cache ca-certificates
+RUN update-ca-certificates 2>/dev/null || true
+RUN apk add --no-cache speedtest-cli bash
 RUN mkdir isp
 ADD speedlog /speedlog
 ADD crontab.txt /crontab.txt
 RUN /usr/bin/crontab /crontab.txt
-RUN touch /var/log/speedtest.log
+RUN touch /isp/speedtest.log
+RUN chmod 777 /isp/speedtest.log
+RUN ln -s /usr/bin/python3 /usr/bin/python
 CMD ["crond", "&&", "tail", "-f", "/var/log/speedtest.log"]
