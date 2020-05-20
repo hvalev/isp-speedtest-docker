@@ -6,6 +6,7 @@ RUN update-ca-certificates 2>/dev/null || true
 RUN apk add --no-cache speedtest-cli bash
 RUN mkdir isp
 ADD speedlog /speedlog
+RUN chmod 777 speedlog
 ADD crontab.txt /crontab.txt
 RUN /usr/bin/crontab /crontab.txt
 RUN touch /isp/speedtest.log
