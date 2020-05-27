@@ -1,5 +1,5 @@
 # speedtest-docker
-
+![](https://github.com/hvalev/isp-speedtest-docker/workflows/.github/workflows/main.yml/badge.svg)
 Minimal speedtest docker container using speedtest-cli for logging your ISP speed to csv files separated by date as such:</br>
 2020-03-24.csv</br>
 2020-03-25.csv</br>
