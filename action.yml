@@ -1,2 +1,0 @@
-- name: Docker Buildx
-  uses: crazy-max/ghaction-docker-buildx@v1.6.2
