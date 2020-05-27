@@ -33,4 +33,7 @@ jobs:
       - 
         name: Docker Hub Description
         uses: hvalev/isp-speedtest-docker@v2
+        env:
+           DOCKERHUB_USERNAME: ${{ secrets.DockerHubUname }}
+           DOCKERHUB_PASSWORD: ${{ secrets.DockerHubPwd }}
             
