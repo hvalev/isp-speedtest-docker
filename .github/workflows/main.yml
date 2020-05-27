@@ -21,10 +21,12 @@ jobs:
       -
         name: Available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
+      - name: login to docker hub
+        run: echo "${{ secrets.DockerHubUname }}" | docker login -u "${{ secrets.DockerHubPwd }}" --password-stdin
       -
         name: Run Buildx
         run: |
-          docker buildx build \
+          docker buildx build --push \
           --tag hvalev/newnewtest:latest \
           --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x .
             
