@@ -1,3 +1,6 @@
+#!/bin/sh
+set -e
+
 file='/isp/'$(date +%Y-%m-%d)'.csv'
 if [ -f "$file" ]; then
     speedtest-cli --csv >> $file
@@ -8,3 +11,4 @@ else
     speedtest-cli --csv >> $file
 fi
 
+exit;

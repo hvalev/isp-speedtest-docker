@@ -1,15 +1,9 @@
-FROM alpine:latest
-RUN apk update
-RUN apk upgrade 
-RUN apk add --no-cache ca-certificates
-RUN update-ca-certificates 2>/dev/null || true
+FROM alpine:latest 
+RUN apk update && apk add dcron curl wget rsync ca-certificates && rm -rf /var/cache/apk/*
+RUN mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && touch /var/log/cron/cron.log && mkdir -m 0644 -p /etc/cron.d
 RUN apk add --no-cache speedtest-cli bash
+COPY /scripts/* /
 RUN mkdir isp
-ADD speedlog /speedlog
-RUN chmod 777 speedlog
-ADD crontab.txt /crontab.txt
-RUN /usr/bin/crontab /crontab.txt
-RUN touch /isp/speedtest.log
-RUN chmod 777 /isp/speedtest.log
-RUN ln -s /usr/bin/python3 /usr/bin/python
-CMD ["crond", "&&", "tail", "-f", "/var/log/speedtest.log"]
+RUN chmod 777 /speedtest.sh
+ENTRYPOINT ["/docker-entry.sh"]
+CMD ["/docker-cmd.sh"]
