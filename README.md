@@ -20,8 +20,8 @@ docker run -d --network host -e 'CRON_STRINGS=*/5 * * * * /speedtest.sh' -v /hom
 version: "3.7"
 services:
   isp-speedtest:
+    image: hvalev/isp-speedtest
     container_name: isp-speedtest
-	image: hvalev/isp-speedtest
     network_mode: host
     environment:
       - 'CRON_STRINGS=*/5 * * * * /speedtest.sh'
