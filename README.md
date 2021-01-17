@@ -35,7 +35,7 @@ services:
 docker build https://github.com/hvalev/isp-speedtest-docker.git --tag isp-speedtest
 ```
 
-## Awknowledgements 
+## Acknowledgements 
 Some code used from [here](https://github.com/igomez10/speedInspectorRPI/). Setting Cron strings as env variable approach used from [here](https://hub.docker.com/r/xordiv/docker-alpine-cron).
 
 ## Limitations
