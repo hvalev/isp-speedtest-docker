@@ -6,7 +6,7 @@ if [ -f "$file" ]; then
     speedtest-cli --csv >> $file
 else
     touch $file
-	chmod 777 $file
+    chmod 777 $file
     speedtest-cli --csv-header >> $file
     speedtest-cli --csv >> $file
 fi

@@ -1,23 +1,21 @@
 # speedtest-docker
-![](https://github.com/hvalev/isp-speedtest-docker/workflows/.github/workflows/main.yml/badge.svg)
-Minimal speedtest docker container using speedtest-cli for logging your ISP speed to csv files organized by date as follows:</br>
+
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/hvalev/isp-speedtest-docker/ci)
+![Docker Pulls](https://img.shields.io/docker/pulls/hvalev/isp-speedtest)
+![Docker Stars](https://img.shields.io/docker/stars/hvalev/isp-speedtest)
+![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/hvalev/isp-speedtest)
+
+Minimal docker container for testing your connection bandwidth using speedtest-cli and logging it to csv files organized by date as follows:</br>
 2020-03-24.csv</br>
 2020-03-25.csv</br>
 
-For limitations of the speedtest-cli tool see here: https://github.com/sivel/speedtest-cli#inconsistency</br>
-Some code used from here: https://github.com/igomez10/speedInspectorRPI/</br>
-Cron setting as env variable approach used from here: https://hub.docker.com/r/xordiv/docker-alpine-cron (docker image is only available for amd64)</br>
-
-Bear in mind that speedtest-cli causes a lot of connections to spawn and if ran too frequently can slowly overwhelm your router! The default setting of 5 minutes should be okay. I hold no responsibility if you ldos yourself as I did multiple times.
-
-To get it running you can either use: </br>
-* docker run command
+## Usage
+docker run
 ```
-docker build https://github.com/hvalev/isp-speedtest-docker.git --tag isp-speedtest
-docker run -d --network host -e 'CRON_STRINGS=*/5 * * * * /speedtest.sh' -v /home/pi/isp-speedtest:/isp --name isp-speedtest isp-speedtest
+docker run -d --network host -e 'CRON_STRINGS=*/5 * * * * /speedtest.sh' -v /home/pi/isp-speedtest:/isp --name isp-speedtest hvalev/isp-speedtest
 ```
 
-* docker-compose file
+docker-compose
 ```
 version: "3.7"
 services:
@@ -31,3 +29,14 @@ services:
       - /home/pi/isp-speedtest/:/isp/
     restart: always
 ```
+
+## Building
+```
+docker build https://github.com/hvalev/isp-speedtest-docker.git --tag isp-speedtest
+```
+
+## Awknowledgements 
+Some code used from [here](https://github.com/igomez10/speedInspectorRPI/). Setting Cron strings as env variable approach used from [here](https://hub.docker.com/r/xordiv/docker-alpine-cron).
+
+## Limitations
+Bear in mind that speedtest-cli causes a lot of connections to spawn and if ran too frequently can slowly overwhelm your router! The default setting of 5 minutes should be okay. I hold no responsibility if you ~~d~~dos yourself. Limitations are also imposed by the speedtest-cli tool. A detailed list of those for further reading can be found [here](https://github.com/sivel/speedtest-cli#inconsistency).
