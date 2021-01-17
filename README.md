@@ -1,4 +1,4 @@
-# speedtest-docker
+# Minimal dockerized speed-test container
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/hvalev/isp-speedtest-docker/ci)
 ![Docker Pulls](https://img.shields.io/docker/pulls/hvalev/isp-speedtest)
